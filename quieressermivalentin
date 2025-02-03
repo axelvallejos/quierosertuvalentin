@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentín?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9e3e3;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #d9534f;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+        #si {
+            background-color: #5cb85c;
+            color: white;
+        }
+        #no {
+            background-color: #d9534f;
+            color: white;
+        }
+        iframe {
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            height: 300px;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Quieres ser mi Valentín?</h1>
+    <button id="si">¡Sí!</button>
+    <button id="no">No</button>
+
+    <!-- Videos de YouTube -->
+    <iframe id="video-feliz" class="hidden" src="https://www.youtube.com/embed/DwCBDXEpSR4" title="Video feliz" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe id="video-triste" class="hidden" src="https://www.youtube.com/embed/ghnUlDpgM7g" title="Video triste" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <!-- Imagen triste -->
+    <img id="imagen-triste" src="https://estaticos-cdn.prensaiberica.es/clip/444b40da-12bd-4611-85a0-2e5aed4fed99_16-9-discover-aspect-ratio_default_0.webp" class="hidden">
+
+    <script>
+        let intentosNo = 0;
+
+        // Botón "Sí"
+        document.getElementById('si').addEventListener('click', function() {
+            // Oculta los botones y muestra el video feliz
+            document.getElementById('si').classList.add('hidden');
+            document.getElementById('no').classList.add('hidden');
+            document.getElementById('video-feliz').classList.remove('hidden');
+            document.getElementById('video-feliz').src += "?autoplay=1"; // Autoreproduce el video
+        });
+
+        // Botón "No"
+        document.getElementById('no').addEventListener('click', function() {
+            intentosNo++;
+            if (intentosNo < 3) {
+                alert("¿Estás segura? ¡Piénsalo bien! 😢");
+                // Muestra el video triste mientras pregunta
+                document.getElementById('video-triste').classList.remove('hidden');
+                document.getElementById('video-triste').src += "?autoplay=1"; // Autoreproduce el video
+            } else {
+                // Muestra la imagen triste y reproduce el video triste
+                document.getElementById('video-triste').classList.remove('hidden');
+                document.getElementById('video-triste').src += "?autoplay=1"; // Autoreproduce el video
+                document.getElementById('imagen-triste').classList.remove('hidden');
+                alert("Bueno, me rendiré... pero espero que cambies de opinión. 💔");
+            }
+        });
+    </script>
+</body>
+</html>
